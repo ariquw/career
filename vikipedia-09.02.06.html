@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>09.02.06 Сетевое и системное администрирование | НовГУ</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="./styles/common.css">
+    <link rel="stylesheet" href="./styles/viki-elements.css">
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <div class="top-nav-container" id="navMenu">
+                <a href="vikipedia.html" class="nav-link">Википедия специальностей</a>
+                <a href="test.html" class="nav-link">Тест на профориентацию</a>
+                <a href="#" class="nav-link">О нас</a>
+                <a href="#" class="nav-link">Фото</a>
+            </div>
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span class="burger-icon"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="logo">
+            <img src="./images/NovSU_logo_rus_horizontal 1.png" alt="Новгородский государственный университет имени Ярослава Мудрого">
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="history.back()">
+                <span>←</span> Назад
+            </button>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> >
+            <a href="vikipedia.html">Википедия</a> >
+            <span>09.02.06 «Сетевое и системное администрирование»</span>
+        </div>
+
+        <div class="content-card">
+            <div class="hero-image">
+                <img src="images/6.jpg" alt="Сетевое и системное администрирование">
+            </div>
+
+            <div class="text-content">
+                <p>
+                    Специальность «Сетевое и системное администрирование» готовит специалистов по настройке, обслуживанию и защите компьютерных сетей и серверов. Студенты изучают операционные системы, архитектуру сетей, протоколы передачи данных, основы кибербезопасности и администрирования баз данных.
+                </p>
+                <p>
+                    Выпускники работают системными администраторами, сетевыми инженерами, специалистами по технической поддержке и информационной безопасности в IT-компаниях, на предприятиях, в банках и государственных структурах. Они обеспечивают бесперебойную работу IT-инфраструктуры, настраивают оборудование и устраняют неисправности.
+                </p>
+                <p>
+                    Обучение проходит в современных компьютерных классах и лабораториях, оснащённых серверным оборудованием, маршрутизаторами и коммутаторами. Студенты получают практические навыки работы с реальными сетями и системами виртуализации.
+                </p>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <div class="gallery-header">
+                <h2>Фото галерея</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo1.jpg" alt="Студенты за работой">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo2.jpg" alt="Настройка серверов">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo3.jpg" alt="Сетевое оборудование">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo4.jpg" alt="Компьютерный класс">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo5.jpg" alt="Учебный процесс">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/vikki2_photo6.jpg" alt="Практика">
+                </div>
+            </div>
+
+            <div class="gallery-nav">
+                <button class="nav-btn">←</button>
+                <button class="nav-btn">→</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <span>© НовГУ 1993-2025</span>
+            <a href="#">Сведения об образовательной организации</a>
+            <a href="#">Политика конфиденциальности</a>
+        </div>
+        <div class="footer-right">
+            <div>ул.Большая Санкт-Петербургская,41, каб.1101,1103</div>
+            <div>Приемная комиссия: <a href="tel:+78162332044">+7(8162)33-20-44</a></div>
+        </div>
+    </footer>
+
+    <script>
+        // Бургер-меню скрипт
+        (function() {
+            const burger = document.getElementById('burgerBtn');
+            const menu = document.getElementById('navMenu');
+            
+            if (burger && menu) {
+                burger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    menu.classList.toggle('open');
+                    burger.classList.toggle('active');
+                });
+                
+                menu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.remove('open');
+                        burger.classList.remove('active');
+                    });
+                });
+                
+                document.addEventListener('click', function(event) {
+                    if (!menu.contains(event.target) && !burger.contains(event.target)) {
+                        menu.classList.remove('open');
+                        burger.classList.remove('active');
+                    }
+                });
+            }
+        })();
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener('load', () => {
+            gsap.from('.top-nav', { opacity: 0, y: -30, duration: 0.6 });
+            gsap.from('.breadcrumb', { opacity: 0, y: 20, duration: 0.5, delay: 0.5 });
+            gsap.from('.content-card', { opacity: 0, y: 50, duration: 0.7, delay: 0.7 });
+            gsap.from('.hero-image', { opacity: 0, scale: 0.9, duration: 0.6, delay: 0.9 });
+            gsap.from('.text-content p', { opacity: 0, x: -30, duration: 0.6, stagger: 0.2, delay: 1.1 });
+            gsap.from('.gallery-header', { opacity: 0, y: 30, duration: 0.5, delay: 1.4 });
+            gsap.from('.gallery-item', { opacity: 0, scale: 0.8, duration: 0.5, stagger: 0.1, delay: 1.6 });
+            gsap.from('.gallery-nav', { opacity: 0, y: 20, duration: 0.5, delay: 1.9 });
+            gsap.from('.footer', { opacity: 0, y: 30, duration: 0.6, delay: 2.1 });
+        });
+
+        gsap.from('.content-card', {
+            scrollTrigger: { trigger: '.content-card', start: "top 80%", toggleActions: "play none none reverse" },
+            scale: 0.95, boxShadow: "0 0 0 rgba(0,0,0,0)", duration: 0.8
+        });
+
+        gsap.from('.gallery-item', {
+            scrollTrigger: { trigger: '.gallery-grid', start: "top 70%", toggleActions: "play none none reverse" },
+            opacity: 0, y: 40, rotationX: 15, duration: 0.6, stagger: 0.1
+        });
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => { gsap.to(btn, { scale: 1.05, duration: 0.2 }); });
+            btn.addEventListener('mouseleave', () => { gsap.to(btn, { scale: 1, duration: 0.2 }); });
+        });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, { scale: 1.03, duration: 0.3, boxShadow: "0 10px 25px rgba(0,0,0,0.2)" });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, { scale: 1, duration: 0.3, boxShadow: "none" });
+            });
+        });
+    </script>
+</body>
+</html>
